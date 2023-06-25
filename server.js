@@ -1,35 +1,40 @@
 const express = require('express');
 const path = require('path');
+
+const clog = require('./middleware/clog');
 const api = require('./routes/index.js');
 
-const PORT = process.env.port || 3001;
+const PORT = process.env.PORT || 3001;
 
 const app = express();
 
-// Import custom middleware, "cLog"
+// Custom middleware, "cLog"
 app.use(clog);
 
 // Middleware for parsing JSON and urlencoded form data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Serve static files from the "public" directory
+app.use(express.static(path.join(__dirname, 'public')));
+
+// API routes
 app.use('/api', api);
 
-app.use(express.static('public'));
-
 // GET Route for homepage
-app.get('/', (req, res) =>
-  res.sendFile(path.join(__dirname, '/public/index.html'))
-
-);
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 // GET Route for feedback page
-app.get('/feedback', (req, res) =>
-  res.sendFile(path.join(__dirname, '/public/notes.html'))
-);
+app.get('/feedback', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'notes.html'));
+});
 
-app.get('*', (req, res) =>
-  res.sendFile(path.join(__dirname, '/public/pages/404.html'))
-);
+// 404 Route
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', '404.html'));
+});
 
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT} 🚀`)
