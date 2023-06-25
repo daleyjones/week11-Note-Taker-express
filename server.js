@@ -1,8 +1,8 @@
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 
-const clog = require('./middleware/clog'); 
-
+const clog = require('./middleware/clog');
 const api = require('./routes/index.js');
 
 const PORT = process.env.PORT || 3001;
@@ -18,6 +18,19 @@ app.use(express.urlencoded({ extended: true }));
 
 // Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, 'public')));
+
+// API route to fetch notes
+app.get('/api/notes', (req, res) => {
+  fs.readFile(path.join(__dirname, 'db', 'notes.json'), 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Internal Server Error' });
+    } else {
+      const notes = JSON.parse(data);
+      res.json(notes);
+    }
+  });
+});
 
 // API routes
 app.use('/api', api);
