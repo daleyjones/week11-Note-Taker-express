@@ -36,7 +36,7 @@ app.get('/api/notes', (req, res) => {
 app.use('/api', api);
 
 // GET Route for homepage
-app.get('/', (req, res) => {
+app.get('/index', (req, res) => {
   res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
