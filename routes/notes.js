@@ -3,9 +3,9 @@ const router = express.Router();
 const path = require('path');
 const fs = require('fs');
 
-const notesFilePath = path.join(__dirname, '../db/notes.json');
+const notesFilePath = path.join(__dirname, '..', 'db', 'notes.json');
 
-
+// Read notes from the JSON file
 function readNotes() {
   try {
     const notesData = fs.readFileSync(notesFilePath, 'utf8');
@@ -16,7 +16,7 @@ function readNotes() {
   }
 }
 
-
+// Write notes to the JSON file
 function writeNotes(notes) {
   try {
     fs.writeFileSync(notesFilePath, JSON.stringify(notes), 'utf8');
