@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // API route to fetch notes
 app.get('/api/notes', (req, res) => {
-  fs.readFile(path.join(__dirname, 'db', 'notes.json'), 'utf8', (err, data) => {
+  fs.readFile(path.join(__dirname, '/db/notes.json'), 'utf8', (err, data) => {
     if (err) {
       console.error(err);
       res.status(500).json({ message: 'Internal Server Error' });
