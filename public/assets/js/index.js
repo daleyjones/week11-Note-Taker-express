@@ -8,8 +8,6 @@ if (window.location.pathname === '/notes') {
   noteTitle = document.querySelector('.note-title');
   noteText = document.querySelector('.note-textarea');
   saveNoteBtn = document.querySelector('.save-note');
-  
-
   newNoteBtn = document.querySelector('.new-note');
   noteList = document.querySelectorAll('.list-container .list-group');
 }
@@ -52,7 +50,9 @@ const deleteNote = (id) =>
     },
   });
 
+
 const renderActiveNote = () => {
+  console.log('renderActiveNote');
   hide(saveNoteBtn);
 
   if (activeNote.id) {
@@ -111,6 +111,7 @@ const handleNewNoteView = (e) => {
 };
 
 const handleRenderSaveBtn = () => {
+  console.log('handleRenderSaveBtn');
   if (!noteTitle.value.trim() || !noteText.value.trim()) {
     hide(saveNoteBtn);
   } else {

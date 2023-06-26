@@ -5,7 +5,6 @@ const fs = require('fs');
 
 const notesFilePath = path.join(__dirname, '../db/notes.json');
 
-
 function readNotes() {
   try {
     const notesData = fs.readFileSync(notesFilePath, 'utf8');
@@ -16,7 +15,6 @@ function readNotes() {
   }
 }
 
-
 function writeNotes(notes) {
   try {
     fs.writeFileSync(notesFilePath, JSON.stringify(notes), 'utf8');
@@ -26,40 +24,56 @@ function writeNotes(notes) {
 }
 
 router.get('/', (req, res) => {
-  const notes = readNotes();
-  res.json(notes);
+  try {
+    const notes = readNotes();
+    res.json(notes);
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error' });
+  }
 });
 
 router.post('/', (req, res) => {
-  const { title, content } = req.body;
-  const newNote = { id: Date.now().toString(), title, content };
-  const notes = readNotes();
-  notes.push(newNote);
-  writeNotes(notes);
-  res.status(201).json(newNote);
+  try {
+    const { title, content } = req.body;
+    const newNote = { id: Date.now().toString(), title, content };
+    const notes = readNotes();
+    notes.push(newNote);
+    writeNotes(notes);
+    res.status(201).json(newNote);
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error' });
+  }
 });
 
 router.get('/:id', (req, res) => {
-  const noteId = req.params.id;
-  const notes = readNotes();
-  const note = notes.find((note) => note.id === noteId);
-  if (note) {
-    res.json(note);
-  } else {
-    res.status(404).json({ message: 'Note not found' });
+  try {
+    const noteId = req.params.id;
+    const notes = readNotes();
+    const note = notes.find((note) => note.id === noteId);
+    if (note) {
+      res.json(note);
+    } else {
+      res.status(404).json({ message: 'Note not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error' });
   }
 });
 
 router.delete('/:id', (req, res) => {
-  const noteId = req.params.id;
-  let notes = readNotes();
-  const index = notes.findIndex((note) => note.id === noteId);
-  if (index !== -1) {
-    const deletedNote = notes.splice(index, 1)[0];
-    writeNotes(notes);
-    res.json(deletedNote);
-  } else {
-    res.status(404).json({ message: 'Note not found' });
+  try {
+    const noteId = req.params.id;
+    let notes = readNotes();
+    const index = notes.findIndex((note) => note.id === noteId);
+    if (index !== -1) {
+      const deletedNote = notes.splice(index, 1)[0];
+      writeNotes(notes);
+      res.json(deletedNote);
+    } else {
+      res.status(404).json({ message: 'Note not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error' });
   }
 });
 

@@ -1,14 +1,24 @@
 {
   "name": "note-taker",
   "version": "1.0.0",
-  "description": "",
+  "description": "Note Taker is a web application that allows users to write and save notes. It provides an organized way to manage thoughts and tasks. The application uses an Express.js back end to store and retrieve note data from a JSON file.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daleyjones/week11-Note-Taker-express.git"
+  },
+  "bugs": {
+    "url": "https://github.com/daleyjones/week11-Note-Taker-express/issues"
+  },
+  "homepage": "https://github.com/daleyjones/week11-Note-Taker-express#readme"
 }
