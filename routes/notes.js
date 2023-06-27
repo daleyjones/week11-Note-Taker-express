@@ -34,8 +34,8 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   try {
-    const { title, content } = req.body;
-    const newNote = { id: Date.now().toString(), title, content };
+    const { title, text } = req.body;
+    const newNote = { id: Date.now().toString(), title, text };
     const notes = readNotes();
     notes.push(newNote);
     writeNotes(notes);
