@@ -28,6 +28,10 @@ Note Taker is a web application that allows users to write and save notes. It pr
 
 
 ## Deployment
+
+[Visit the Application](http://127.0.0.1:5501/public/index.html)
+
+
 The Note Taker application can be deployed to Heroku or any other hosting platform of your choice. To deploy to Heroku, follow these steps:
 
 1. Create a Heroku account if you don't have one.
@@ -48,6 +52,10 @@ HTML
 CSS
 
 JavaScript
+
+## Screenshot
+![screenshot](image/Screenshot%20(23).png)
+
 ## Contributing
 Contributions are welcome! If you find any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request.
 
@@ -55,4 +63,4 @@ Contributions are welcome! If you find any issues or have suggestions for improv
 This project is licensed under the MIT License.
 
 ## Contact
-For any inquiries or feedback, please contact [djones_15@hotmail.com].
+For any inquiries or feedback, please contact [https://github.com/daleyjones].
