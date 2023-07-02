@@ -29,7 +29,7 @@ Note Taker is a web application that allows users to write and save notes. It pr
 
 ## Deployment
 
-[Visit the Application](http://127.0.0.1:5501/public/index.html)
+[Visit the Application](http://localhost:3001/)
 
 
 The Note Taker application can be deployed to Heroku or any other hosting platform of your choice. To deploy to Heroku, follow these steps:
